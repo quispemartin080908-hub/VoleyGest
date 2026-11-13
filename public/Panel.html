@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VoleyGest</title>
+  <link rel="icon" href="imagen/Logo.png" type="imagen/x-icon">
+  <link rel="stylesheet" href="EstiloPanel.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <div id="particles-js"></div>
+  
+  <div class="sidebar">
+    <div class="logo">
+      <img src="imagen/Logo.png" alt="Logo VoleyGest">
+      <span>VoleyGest</span>
+    </div>
+    
+    <nav class="nav-menu">
+      <a href="Panel.html" class="nav-item active" id="inicioBtn">
+        <i class="fas fa-home"></i>
+        <span>Inicio</span>
+      </a>
+      <a href="estadisticas.html" class="nav-item" id="estadisticasBtn">
+        <i class="fas fa-chart-line"></i>
+        <span>Control Personal</span>
+      </a>
+      <a href="usuarios.html" class="nav-item" id="usuariosBtn">
+        <i class="fas fa-users"></i>
+        <span>Usuarios</span>
+      </a>
+      <a href="configuracion.html" class="nav-item" id="configuracionBtn">
+        <i class="fas fa-cog"></i>
+        <span>Configuración</span>
+      </a>
+      <a href="index.html" class="nav-item" id="logoutBtn">
+        <i class="fas fa-sign-out-alt"></i>
+        <span>Cerrar Sesión</span>
+      </a>
+    </nav>
+  </div>
+
+  <div class="main-content">
+    <div class="top-bar" style="display: flex; justify-content: space-between; align-items: center;">
+      
+      <div class="welcome-text" style="font-size: 16px;">
+        ¡Bienvenido, <span id="welcomeUser" style="color: #00d2ff; font-weight: bold;">Martín Quispe</span>!
+      </div>
+
+      <div class="user-info" style="display: flex; align-items: center; gap: 10px;">
+        <i class="fas fa-user-circle"></i>
+        <span>Jugador</span>
+      </div>
+      
+    </div>
+
+    <div class="content">
+      
+      <div class="cards">
+        <div class="card" onclick="window.location.href='registrar-usuario.html'">
+          <h3>Registrar Jugador</h3>
+          <p>Registra nuevos jugadores</p>
+          <div class="card-footer">
+            <span>Haz clic para registrar </span>
+          </div>
+        </div>
+        
+        <div class="card" onclick="window.location.href='asistencia.html'">
+          <h3>Asistencia</h3>
+          <p>Control de asistencia diaria</p>
+          <div class="card-footer">
+            <span>Haz clic para marcar la asistencia</span>
+          </div>
+        </div>
+        
+        <div class="card" onclick="window.location.href='pagos.html'">
+          <h3>Pagos</h3>
+          <p>Gestión de pagos</p>
+          <div class="card-footer">
+            <span>Haz clic para gestionar los pagos </span>
+          </div>
+        </div>
+        
+        <div class="card" onclick="window.location.href='entrenamientos.html'">
+          <h3>Cronograma de entrenamientos</h3>
+          <p>Rutinas de ejercicios</p>
+          <div class="card-footer">
+            <span>Haz clic para ver los entrenamientos</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  
+<!-- 1. Librería oficial de Supabase desde el CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    
+    <!-- 2. Archivo de configuración (ubicado en public/api/) -->
+    <script src="public/api/config.js"></script>
+    
+    <!-- 3. Lógica del CRUD (ubicado en js/) -->
+    <script src="js/api.js"></script>
+    
+    <!-- 4. Control general de la interfaz (ubicado en js/) -->
+    <script src="js/main.js"></script>
+
+
+
+
+</body>
+</html>

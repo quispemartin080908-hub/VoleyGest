@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VoleyGest - Registrar Jugador</title>
+  <link rel="icon" href="imagen/Logo.png" type="imagen/x-icon">
+  <link rel="stylesheet" href="EstiloPanel.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <div id="particles-js"></div>
+  
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <div class="logo">
+      <img src="imagen/Logo.png" alt="Logo VoleyGest">
+      <span>VoleyGest</span>
+    </div>
+    <nav class="nav-menu">
+      <a href="Panel.html" class="nav-item active" id="inicioBtn">
+        <i class="fas fa-home"></i>
+        <span>Inicio</span>
+      </a>
+      <a href="estadisticas.html" class="nav-item" id="estadisticasBtn">
+        <i class="fas fa-chart-line"></i>
+        <span>Control Personal</span>
+      </a>
+      <a href="usuarios.html" class="nav-item" id="usuariosBtn">
+        <i class="fas fa-users"></i>
+        <span>Usuarios</span>
+      </a>
+      <a href="configuracion.html" class="nav-item" id="configuracionBtn">
+        <i class="fas fa-cog"></i>
+        <span>Configuración</span>
+      </a>
+      <a href="index.html" class="nav-item" id="logoutBtn">
+        <i class="fas fa-sign-out-alt"></i>
+        <span>Cerrar Sesión</span>
+      </a>
+    </nav>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <div class="top-bar" style="display: flex; justify-content: space-between; align-items: center;">
+      
+      <div class="welcome-text" style="font-size: 16px;">
+        ¡Bienvenido, <span id="welcomeUser" style="color: #00d2ff; font-weight: bold;">Martín Quispe</span>!
+      </div>
+
+      <div class="user-info" style="display: flex; align-items: center; gap: 10px;">
+        <i class="fas fa-user-circle"></i>
+        <span>Jugador</span>
+      </div>
+      
+    </div>
+
+
+    <div class="content">
+      <h1>Registrar Nuevo Jugador</h1>
+      
+      <!-- Contenedor limpio usando las clases del CSS -->
+      <div class="config-box config-box-register">
+        <h3><i class="fas fa-user-plus"></i> Formulario de Inscripción</h3>
+        <form action="Panel.html">
+          <div class="form-group">
+            <label>Nombre Completo</label>
+            <input type="text" placeholder="Ej. Martin Quispe" required>
+          </div>
+          <div class="form-group">
+            <label>DNI / Documento</label>
+            <input type="text" placeholder="Número de documento" required>
+          </div>
+          <div class="form-group">
+            <label>Categoría / División</label>
+            <input type="text" placeholder="Ej. Sub-18, Mayores" required>
+          </div>
+          <button type="submit" class="btn-save">Registrar e Ingresar</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+<!-- 1. Librería oficial de Supabase desde el CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    
+    <!-- 2. Archivo de configuración (ubicado en public/api/) -->
+    <script src="public/api/config.js"></script>
+    
+    <!-- 3. Lógica del CRUD (ubicado en js/) -->
+    <script src="js/api.js"></script>
+    
+    <!-- 4. Control general de la interfaz (ubicado en js/) -->
+    <script src="js/main.js"></script>
+
+</body>
+</html>

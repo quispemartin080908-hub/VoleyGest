@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VoleyGest</title>
+    <link rel="stylesheet" href="EstiloLogin.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="icon" type="imagen/x-icon" href="imagen/Logo.png">
+
+</head>
+<body style="background-image: url('imagen/Fondo.png'); background-repeat: no-repeat;">
+    <DIV class="wrapper">
+     <!-- Se añade Panel.html en el action del formulario principal para asegurar la validación -->
+     <form action="Panel.html">
+        <img src="imagen/Logo.png" class="Logo">
+
+        <!--TITULO INICIAR SESIÓN-->
+        <h1>INICIAR SESIÓN</h1>
+
+        <!--CONTENEDOR DE USUARIO-->
+        <div class="input-box">
+        <input type="text" id="usuario" placeholder="Usuario" required>
+        <i class='bx bxs-user'></i>
+        </div>
+        
+        <!--CONTENEDOR DE CONTRASEÑA-->
+        <div class="input-box">
+        <input type="password" id="contraseña" placeholder="Contraseña" required>
+        <i class='bx bxs-lock-alt'></i>
+        </div>
+        
+        <!-- CONTENEDOR CON ESPACIO EN EL CENTRO -->
+        <div class="remember-forgot">
+            <!-- Izquierda: Checkbox con texto dividido en dos líneas -->
+            <label>
+                <input type="checkbox"> Volver a<br>recordarme
+            </label>
+            
+            <a href="RecuperarContraseña.html" style="text-align: right;">Olvidaste tu<br>contraseña?</a>
+        </div>
+        
+        <!-- Se removió el <form> interno duplicado, el botón ahora envía el formulario principal -->
+        <button type="submit" class="btn">Ingresar</button>
+        
+        <div class="register-link">
+        <p>No tengo una cuenta <a href="Registro.html">Registrarme</a></p>
+        </div>
+     </form>
+    </DIV>
+
+
+
+    <!-- 1. Librería oficial de Supabase desde el CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    
+    <!-- 2. Archivo de configuración (ubicado en public/api/) -->
+    <script src="public/api/config.js"></script>
+    
+    <!-- 3. Lógica del CRUD (ubicado en js/) -->
+    <script src="js/api.js"></script>
+    
+    <!-- 4. Control general de la interfaz (ubicado en js/) -->
+    <script src="js/main.js"></script>
+    
+</body>
+</html>

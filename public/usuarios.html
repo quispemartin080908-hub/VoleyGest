@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VoleyGest - Usuarios</title>
+  <link rel="icon" href="imagen/Logo.png" type="imagen/x-icon">
+  <link rel="stylesheet" href="EstiloPanel.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <div id="particles-js"></div>
+  
+  <div class="sidebar">
+    <div class="logo">
+      <img src="imagen/Logo.png" alt="Logo VoleyGest">
+      <span>VoleyGest</span>
+    </div>
+    <nav class="nav-menu">
+      <a href="Panel.html" class="nav-item" id="inicioBtn"><i class="fas fa-home"></i><span>Inicio</span></a>
+      <a href="estadisticas.html" class="nav-item" id="estadisticasBtn"><i class="fas fa-chart-line"></i><span>Control Personal</span></a>
+      <a href="usuarios.html" class="nav-item active" id="usuariosBtn"><i class="fas fa-users"></i><span>Usuarios</span></a>
+      <a href="configuracion.html" class="nav-item" id="configuracionBtn"><i class="fas fa-cog"></i><span>Configuración</span></a>
+      <a href="index.html" class="nav-item" id="logoutBtn"><i class="fas fa-sign-out-alt"></i><span>Cerrar Sesión</span></a>
+    </nav>
+  </div>
+
+  <div class="main-content">
+    <div class="top-bar" style="display: flex; justify-content: space-between; align-items: center;">
+      
+      <div class="welcome-text" style="font-size: 16px;">
+        ¡Bienvenido, <span id="welcomeUser" style="color: #00d2ff; font-weight: bold;">Martín Quispe</span>!
+      </div>
+
+      <div class="user-info" style="display: flex; align-items: center; gap: 10px;">
+        <i class="fas fa-user-circle"></i>
+        <span>Jugador</span>
+      </div>
+      
+    </div>
+
+    <div class="content">
+      <div class="flex-header">
+        <h1>Gestión de Usuarios</h1>
+      </div>
+      
+      <table class="user-table">
+        <thead>
+          <tr>
+            <th>Nombre / Usuario</th>
+            <th>Correo Electrónico</th>
+            <th>Rol</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- tr sirve pra crear una fila en la tabla  -->
+          <tr>
+
+            <!-- td sirve para crear una celda de contenido común dentro de una tabla en HTML -->
+            <td>Martin Quispe(Jugador)</td>
+            <td>MartinQuispe02.voley@email.com</td>
+            <td><span class="badge badge-trainer">Armador Principal</span></td>
+            <td class="status-active"><i class="fas fa-circle status-icon"></i> Activo</td>
+            <td>
+              <button class="btn-action"><i class="fas fa-edit"></i></button>
+              <button class="btn-action delete"><i class="fas fa-trash-alt"></i></button>
+            </td>
+          </tr>
+          <tr>
+            <td>Admin VoleyGest</td>
+            <td>admin@voleygest.com</td>
+            <td><span class="badge badge-admin">Administrador</span></td>
+            <td class="status-active"><i class="fas fa-circle status-icon"></i> Activo</td>
+            <td>
+              <button class="btn-action"><i class="fas fa-edit"></i></button>
+              <button class="btn-action delete"><i class="fas fa-trash-alt"></i></button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+
+<!-- 1. Librería oficial de Supabase desde el CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    
+    <!-- 2. Archivo de configuración (ubicado en public/api/) -->
+    <script src="public/api/config.js"></script>
+    
+    <!-- 3. Lógica del CRUD (ubicado en js/) -->
+    <script src="js/api.js"></script>
+    
+    <!-- 4. Control general de la interfaz (ubicado en js/) -->
+    <script src="js/main.js"></script>
+
+
+
+</body>
+</html>
