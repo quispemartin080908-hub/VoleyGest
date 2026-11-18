@@ -1,98 +1,202 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>VoleyGest - Registrar Jugador</title>
-  <link rel="icon" href="imagen/Logo.png" type="imagen/x-icon">
-  <link rel="stylesheet" href="css/EstiloPanel.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VoleyGest - Registrar Jugador</title>
+<link rel="icon" href="imagen/Logo.png" type="imagen/x-icon">
+<link rel="stylesheet" href="css/EstiloPanel.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+.alerta-exito {
+    display: none;
+    background: rgba(46, 213, 115, 0.2);
+    border: 1px solid #2ed573;
+    color: #2ed573;
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-weight: bold;
+    text-align: center;
+}
+.select-custom {
+    width: 100%;
+    padding: 12px;
+    background: rgba(0, 20, 40, 0.8);
+    border: 1px solid rgba(0, 210, 255, 0.3);
+    border-radius: 8px;
+    color: #fff;
+    font-size: 15px;
+}
+</style>
 </head>
 <body>
-  <div id="particles-js"></div>
-  
-  <!-- Sidebar -->
-  <div class="sidebar">
+<div id="particles-js"></div>
+<div class="sidebar">
     <div class="logo">
-      <img src="imagen/Logo.png" alt="Logo VoleyGest">
-      <span>VoleyGest</span>
+        <img src="imagen/Logo.png" alt="Logo VoleyGest">
+        <span>VoleyGest</span>
     </div>
     <nav class="nav-menu">
-      <a href="Panel.html" class="nav-item active" id="inicioBtn">
-        <i class="fas fa-home"></i>
-        <span>Inicio</span>
-      </a>
-      <a href="estadisticas.html" class="nav-item" id="estadisticasBtn">
-        <i class="fas fa-chart-line"></i>
-        <span>Control Personal</span>
-      </a>
-      <a href="usuarios.html" class="nav-item" id="usuariosBtn">
-        <i class="fas fa-users"></i>
-        <span>Usuarios</span>
-      </a>
-      <a href="configuracion.html" class="nav-item" id="configuracionBtn">
-        <i class="fas fa-cog"></i>
-        <span>Configuración</span>
-      </a>
-      <a href="index.html" class="nav-item" id="logoutBtn">
-        <i class="fas fa-sign-out-alt"></i>
-        <span>Cerrar Sesión</span>
-      </a>
+        <a href="Panel.html" class="nav-item" id="inicioBtn"><i class="fas fa-home"></i><span>Inicio</span></a>
+        <a href="estadisticas.html" class="nav-item" id="estadisticasBtn"><i class="fas fa-chart-line"></i><span>Control Personal</span></a>
+        <a href="usuarios.html" class="nav-item" id="usuariosBtn"><i class="fas fa-users"></i><span>Usuarios</span></a>
+        <a href="configuracion.html" class="nav-item" id="configuracionBtn"><i class="fas fa-cog"></i><span>Configuración</span></a>
+        <a href="index.html" class="nav-item" id="logoutBtn"><i class="fas fa-sign-out-alt"></i><span>Cerrar Sesión</span></a>
     </nav>
-  </div>
+</div>
 
-  <!-- Main Content -->
-  <div class="main-content">
+<div class="main-content">
     <div class="top-bar" style="display: flex; justify-content: space-between; align-items: center;">
-      
-      <div class="welcome-text" style="font-size: 16px;">
-        ¡Bienvenido, <span id="welcomeUser" style="color: #00d2ff; font-weight: bold;">Martín Quispe</span>!
-      </div>
-
-      <div class="user-info" style="display: flex; align-items: center; gap: 10px;">
-        <i class="fas fa-user-circle"></i>
-        <span>Jugador</span>
-      </div>
-      
+        <div class="welcome-text" style="font-size: 16px;">
+            ¡Bienvenido, <span id="welcomeUser" style="color: #00d2ff; font-weight: bold;">Martín Quispe</span>!
+        </div>
+        <div class="user-info" style="display: flex; align-items: center; gap: 10px;">
+            <i class="fas fa-user-circle"></i>
+            <span>Jugador</span>
+        </div>
     </div>
-
 
     <div class="content">
-      <h1>Registrar Nuevo Jugador</h1>
-      
-      <!-- Contenedor limpio usando las clases del CSS -->
-      <div class="config-box config-box-register">
-        <h3><i class="fas fa-user-plus"></i> Formulario de Inscripción</h3>
-        <form action="Panel.html">
-          <div class="form-group">
-            <label>Nombre Completo</label>
-            <input type="text" placeholder="Ej. Martin Quispe" required>
-          </div>
-          <div class="form-group">
-            <label>DNI / Documento</label>
-            <input type="text" placeholder="Número de documento" required>
-          </div>
-          <div class="form-group">
-            <label>Categoría / División</label>
-            <input type="text" placeholder="Ej. Sub-18, Mayores" required>
-          </div>
-          <button type="submit" class="btn-save">Registrar e Ingresar</button>
-        </form>
-      </div>
+        <h1>Registro de Nuevos Jugadores</h1>
+        <p class="subtext">Completa los datos oficiales para dar de alta al deportista en la base de datos de VoleyGest.</p>
+
+        <div id="alertaExito" class="alerta-exito">
+            <i class="fas fa-check-circle"></i> ¡Jugador registrado y sincronizado con éxito!
+        </div>
+
+        <div class="grid-config" style="grid-template-columns: 1fr 1fr;">
+            <!-- Formulario de Inscripción -->
+            <div class="config-box config-box-register" style="max-width: 100%;">
+                <h3><i class="fas fa-user-plus"></i> Formulario de Alta</h3>
+                <form id="formRegistroJugador" onsubmit="registrarJugadorLocal(event)">
+                    <div class="form-group">
+                        <label>Nombre Completo</label>
+                        <input type="text" id="nombreJugador" placeholder="Ej. Martín Quispe" required>
+                    </div>
+                    <div class="form-group">
+                        <label>DNI / Documento</label>
+                        <input type="text" id="dniJugador" placeholder="Ej. 45123456" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Categoría / División</label>
+                        <select id="categoriaJugador" class="select-custom">
+                            <option value="Primera División">Primera División</option>
+                            <option value="Sub-18 Masculino">Sub-18 Masculino</option>
+                            <option value="Sub-16 Formativas">Sub-16 Formativas</option>
+                            <option value="Mayores Mixto">Mayores Mixto</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Posición en la cancha</label>
+                        <select id="posicionJugador" class="select-custom">
+                            <option value="Armador">Armador</option>
+                            <option value="Atacante / Punta">Atacante / Punta</option>
+                            <option value="Central">Central</option>
+                            <option value="Opuesto">Opuesto</option>
+                            <option value="Líbero">Líbero</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn-save btn-margin-top" style="width: 100%;">
+                        <i class="fas fa-save"></i> Guardar y Registrar Jugador
+                    </button>
+                </form>
+            </div>
+
+            <!-- Panel de Estadísticas del Registro -->
+            <div class="config-box">
+                <h3><i class="fas fa-info-circle"></i> Información del Sistema</h3>
+                <p style="color: #87cefa; line-height: 1.6; margin-bottom: 20px;">
+                    Al registrar un jugador, el sistema asigna automáticamente un estado <strong>Activo</strong> y habilita su perfil para el control de asistencia y estadísticas individuales.
+                </p>
+                <div class="stat-item" style="margin-bottom: 15px;">
+                    <div class="stat-value" id="totalRegistradosSesion">3</div>
+                    <div class="stat-label">Registrados en esta sesión</div>
+                </div>
+                <button class="btn-secondary" style="width: 100%;" onclick="window.location.href='usuarios.html'">
+                    <i class="fas fa-users"></i> Ver Tabla General de Usuarios
+                </button>
+            </div>
+        </div>
+
+        <!-- Tabla de registros recientes -->
+        <div class="stats-section" style="margin-top: 30px;">
+            <h2><i class="fas fa-list-alt"></i> Jugadores Ingresados Recientemente</h2>
+            <table class="user-table">
+                <thead>
+                    <tr>
+                        <th>Nombre Completo</th>
+                        <th>DNI</th>
+                        <th>Categoría</th>
+                        <th>Posición</th>
+                        <th>Estado</th>
+                    </tr>
+                </thead>
+                <tbody id="tablaRecientes">
+                    <tr>
+                        <td>Martín Quispe</td>
+                        <td>DNI: 45123456</td>
+                        <td><span class="badge badge-trainer">Primera División</span></td>
+                        <td>Armador</td>
+                        <td class="status-active"><i class="fas fa-circle status-icon"></i> Activo</td>
+                    </tr>
+                    <tr>
+                        <td>Calle Yago</td>
+                        <td>DNI: 44987654</td>
+                        <td><span class="badge badge-trainer">Primera División</span></td>
+                        <td>Central</td>
+                        <td class="status-active"><i class="fas fa-circle status-icon"></i> Activo</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
-  </div>
+</div>
 
-  <!-- 1. Librería oficial de Supabase desde el CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    
-    <!-- 2. Archivo de configuración (ruta corregida sin 'public/') -->
-    <script src="api/config.js"></script>
-    
-    <!-- 3. Lógica del CRUD -->
-    <script src="js/api.js"></script>
-    
-    <!-- 4. Control general de la interfaz -->
-    <script src="js/main.js"></script>
+<script>
+let contadorRegistros = 2;
 
+function registrarJugadorLocal(event) {
+    event.preventDefault();
+
+    const nombre = document.getElementById('nombreJugador').value.trim();
+    const dni = document.getElementById('dniJugador').value.trim();
+    const categoria = document.getElementById('categoriaJugador').value;
+    const posicion = document.getElementById('posicionJugador').value;
+
+    if (!nombre || !dni) {
+        alert('Por favor complete todos los campos obligatorios.');
+        return;
+    }
+
+    contadorRegistros++;
+    document.getElementById('totalRegistradosSesion').innerText = contadorRegistros;
+
+    // Agregar a la tabla de recientes
+    const tabla = document.getElementById('tablaRecientes');
+    const nuevaFila = `
+        <tr>
+            <td>${nombre}</td>
+            <td>DNI: ${dni}</td>
+            <td><span class="badge badge-trainer">${categoria}</span></td>
+            <td>${posicion}</td>
+            <td class="status-active"><i class="fas fa-circle status-icon"></i> Activo</td>
+        </tr>
+    `;
+    tabla.insertAdjacentHTML('afterbegin', nuevaFila);
+
+    // Mostrar alerta de éxito
+    const alerta = document.getElementById('alertaExito');
+    alerta.style.display = 'block';
+    setTimeout(() => { alerta.style.display = 'none'; }, 4000);
+
+    // Limpiar formulario
+    document.getElementById('formRegistroJugador').reset();
+}
+</script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="api/config.js"></script>
+<script src="js/api.js"></script>
+<script src="js/main.js"></script>
 </body>
 </html>

@@ -1,6 +1,4 @@
-// ==========================================
-// OPERACIÓN READ (Leer y mostrar registros)
-// ==========================================
+
 async function obtenerUsuarios() {
     let { data: jugadores, error } = await _supabase
         .from('jugadores')

@@ -1,108 +1,97 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>VoleyGest - Control Personal</title>
-  <link rel="icon" href="imagen/Logo.png" type="imagen/x-icon">
-  <link rel="stylesheet" href="css/EstiloPanel.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VoleyGest - Control Personal</title>
+<link rel="icon" href="imagen/Logo.png" type="imagen/x-icon">
+<link rel="stylesheet" href="css/EstiloPanel.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-  <div id="particles-js"></div>
-  
-  <div class="sidebar">
+<div id="particles-js"></div>
+
+<!-- Menú Lateral -->
+<div class="sidebar">
     <div class="logo">
-      <img src="imagen/Logo.png" alt="Logo VoleyGest">
-      <span>VoleyGest</span>
+        <img src="imagen/Logo.png" alt="Logo VoleyGest">
+        <span>VoleyGest</span>
     </div>
     <nav class="nav-menu">
-      <a href="Panel.html" class="nav-item" id="inicioBtn"><i class="fas fa-home"></i><span>Inicio</span></a>
-      <a href="estadisticas.html" class="nav-item active" id="estadisticasBtn"><i class="fas fa-chart-line"></i><span>Control Personal</span></a>
-      <a href="usuarios.html" class="nav-item" id="usuariosBtn"><i class="fas fa-users"></i><span>Usuarios</span></a>
-      <a href="configuracion.html" class="nav-item" id="configuracionBtn"><i class="fas fa-cog"></i><span>Configuración</span></a>
-      <a href="index.html" class="nav-item" id="logoutBtn"><i class="fas fa-sign-out-alt"></i><span>Cerrar Sesión</span></a>
+        <a href="Panel.html" class="nav-item"><i class="fas fa-home"></i><span>Inicio</span></a>
+        <a href="estadisticas.html" class="nav-item active"><i class="fas fa-chart-line"></i><span>Control Personal</span></a>
+        <a href="usuarios.html" class="nav-item"><i class="fas fa-users"></i><span>Usuarios</span></a>
+        <a href="configuracion.html" class="nav-item"><i class="fas fa-cog"></i><span>Configuración</span></a>
+        <a href="index.html" class="nav-item"><i class="fas fa-sign-out-alt"></i><span>Cerrar Sesión</span></a>
     </nav>
-  </div>
+</div>
 
-  <div class="main-content">
-    <div class="top-bar" style="display: flex; justify-content: space-between; align-items: center;">
-      
-      <div class="welcome-text" style="font-size: 16px;">
-        ¡Bienvenido, <span id="welcomeUser" style="color: #00d2ff; font-weight: bold;">Martín Quispe</span>!
-      </div>
-
-      <div class="user-info" style="display: flex; align-items: center; gap: 10px;">
-        <i class="fas fa-user-circle"></i>
-        <span>Jugador</span>
-      </div>
-      
+<!-- Contenido Principal -->
+<div class="main-content">
+    <div class="top-bar">
+        <div class="welcome-text">¡Bienvenido, <b>Martín Quispe</b>!</div>
+        <div class="user-info"><i class="fas fa-user-circle"></i><span>Jugador</span></div>
     </div>
-
 
     <div class="content">
-      <h1>Control Personal y Estadísticas - Martín Quispe</h1>
-      
-      <div class="stats-grid">
-        <div class="stat-item">
-          <div class="stat-value">85%</div>
-          <div class="stat-label">Asistencia Promedio</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-value">42</div>
-          <div class="stat-label">Jugadores Activos</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-value">12</div>
-          <div class="stat-label">Entrenamientos este Mes</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-value">92%</div>
-          <div class="stat-label">Rendimiento Físico</div>
-        </div>
-      </div>
+        <h1>Control Personal y Estadísticas</h1>
+        <p class="subtext">Resumen de tu rendimiento y actividad en el equipo.</p>
 
-      <div class="stats-section">
-        <h2><i class="fas fa-star"></i> Rendimiento Individual Reciente</h2>
-        <p class="subtext">Monitoreo del estado físico y técnico de los últimos entrenamientos.</p>
-        
-        <div class="cards">
-          <div class="card card-left">
-            <h3>Rendimiento Técnico</h3>
-            <p><strong>Saques efectivos:</strong> 78%</p>
-            <p><strong>Efectividad de Bloqueo:</strong> 65%</p>
-            <p><strong>Precisión de Recepción:</strong> 82%</p>
-            <div class="card-footer card-footer-margin">
-              <span>Actualizado hace 1 día</span>
+        <!-- Cuadros de estadísticas generales -->
+        <div class="stats-grid">
+            <div class="stat-item">
+                <div class="stat-value">85%</div>
+                <div class="stat-label">Asistencia Promedio</div>
             </div>
-          </div>
-
-          <div class="card card-left">
-            <h3>Evaluación Física</h3>
-            <p><strong>Resistencia Aeróbica:</strong> Excelente</p>
-            <p><strong>Salto Vertical Promedio:</strong> 62 cm</p>
-            <p><strong>Velocidad de Reacción:</strong> 0.4s</p>
-            <div class="card-footer card-footer-margin">
-              <span>Siguiente testeo: Próxima semana</span>
+            <div class="stat-item">
+                <div class="stat-value">42</div>
+                <div class="stat-label">Jugadores Activos</div>
             </div>
-          </div>
+            <div class="stat-item">
+                <div class="stat-value">12</div>
+                <div class="stat-label">Entrenamientos este Mes</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">92%</div>
+                <div class="stat-label">Rendimiento Físico</div>
+            </div>
         </div>
-      </div>
+
+        <!-- Sección de tarjetas con detalles -->
+        <div class="stats-section">
+            <h2><i class="fas fa-star"></i> Rendimiento Individual Reciente</h2>
+            <p class="subtext">Estado físico y técnico de los últimos entrenamientos.</p>
+            
+            <div class="cards">
+                <div class="card card-left">
+                    <h3>Rendimiento Técnico</h3>
+                    <p><strong>Saques efectivos:</strong> 78%</p>
+                    <p><strong>Efectividad de Bloqueo:</strong> 65%</p>
+                    <p><strong>Precisión de Recepción:</strong> 82%</p>
+                    <div class="card-footer card-footer-margin">
+                        <span>Actualizado hace 1 día</span>
+                    </div>
+                </div>
+
+                <div class="card card-left">
+                    <h3>Evaluación Física</h3>
+                    <p><strong>Resistencia Aeróbica:</strong> Excelente</p>
+                    <p><strong>Salto Vertical Promedio:</strong> 62 cm</p>
+                    <p><strong>Velocidad de Reacción:</strong> 0.4s</p>
+                    <div class="card-footer card-footer-margin">
+                        <span>Siguiente testeo: Próxima semana</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
-  </div>
+</div>
 
-
-<!-- 1. Librería oficial de Supabase desde el CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    
-    <!-- 2. Archivo de configuración (ruta corregida sin 'public/') -->
-    <script src="api/config.js"></script>
-    
-    <!-- 3. Lógica del CRUD -->
-    <script src="js/api.js"></script>
-    
-    <!-- 4. Control general de la interfaz -->
-    <script src="js/main.js"></script>
-
+<!-- Scripts de Supabase y Control -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="api/config.js"></script>
+<script src="js/api.js"></script>
+<script src="js/main.js"></script>
 </body>
 </html>

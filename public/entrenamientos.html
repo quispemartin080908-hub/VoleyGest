@@ -1,79 +1,361 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>VoleyGest - Entrenamientos</title>
-  <link rel="icon" href="imagen/Logo.png" type="imagen/x-icon">
-  <link rel="stylesheet" href="css/EstiloPanel.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VoleyGest - Entrenamientos</title>
+<link rel="icon" href="imagen/Logo.png" type="imagen/x-icon">
+<link rel="stylesheet" href="css/EstiloPanel.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.75);
+    backdrop-filter: blur(6px);
+    justify-content: center;
+    align-items: center;
+}
+.modal-content {
+    background: rgba(0, 25, 50, 0.98);
+    border: 1px solid rgba(0, 210, 255, 0.5);
+    padding: 30px;
+    border-radius: 15px;
+    width: 92%;
+    max-width: 650px;
+    max-height: 85vh;
+    overflow-y: auto;
+    color: #fff;
+    box-shadow: 0 15px 40px rgba(0,210,255,0.3);
+    position: relative;
+}
+.close-modal {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 24px;
+    color: #00d2ff;
+    cursor: pointer;
+}
+.progress-container {
+    width: 100%;
+    background: rgba(0, 210, 255, 0.15);
+    border-radius: 10px;
+    height: 12px;
+    margin: 15px 0;
+    overflow: hidden;
+}
+.progress-bar {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #00d2ff, #2ed573);
+    transition: width 0.3s ease;
+}
+.ejercicio-item {
+    background: rgba(0, 40, 80, 0.5);
+    border: 1px solid rgba(0, 210, 255, 0.2);
+    border-radius: 10px;
+    padding: 12px 15px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    transition: all 0.2s;
+}
+.ejercicio-item.completado {
+    opacity: 0.6;
+    border-color: #2ed573;
+}
+.ejercicio-item.completado .ej-titulo {
+    text-decoration: line-through;
+    color: #2ed573;
+}
+.tag-intensidad {
+    font-size: 11px;
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-weight: bold;
+    margin-left: 8px;
+}
+.alta { background: rgba(255, 71, 87, 0.2); color: #ff4757; border: 1px solid #ff4757; }
+.media { background: rgba(255, 165, 2, 0.2); color: #ffa502; border: 1px solid #ffa502; }
+.tecnica { background: rgba(0, 210, 255, 0.2); color: #00d2ff; border: 1px solid #00d2ff; }
+</style>
 </head>
 <body>
-  <div id="particles-js"></div>
-  
-  <div class="sidebar">
+<div id="particles-js"></div>
+<div class="sidebar">
     <div class="logo">
-      <img src="imagen/Logo.png" alt="Logo VoleyGest">
-      <span>VoleyGest</span>
+        <img src="imagen/Logo.png" alt="Logo VoleyGest">
+        <span>VoleyGest</span>
     </div>
     <nav class="nav-menu">
-      <a href="Panel.html" class="nav-item active" id="inicioBtn"><i class="fas fa-home"></i><span>Inicio</span></a>
-      <a href="estadisticas.html" class="nav-item" id="estadisticasBtn"><i class="fas fa-chart-line"></i><span>Control Personal</span></a>
-      <a href="usuarios.html" class="nav-item" id="usuariosBtn"><i class="fas fa-users"></i><span>Usuarios</span></a>
-      <a href="configuracion.html" class="nav-item" id="configuracionBtn"><i class="fas fa-cog"></i><span>Configuración</span></a>
-      <a href="index.html" class="nav-item" id="logoutBtn"><i class="fas fa-sign-out-alt"></i><span>Cerrar Sesión</span></a>
+        <a href="Panel.html" class="nav-item" id="inicioBtn"><i class="fas fa-home"></i><span>Inicio</span></a>
+        <a href="estadisticas.html" class="nav-item" id="estadisticasBtn"><i class="fas fa-chart-line"></i><span>Control Personal</span></a>
+        <a href="usuarios.html" class="nav-item" id="usuariosBtn"><i class="fas fa-users"></i><span>Usuarios</span></a>
+        <a href="configuracion.html" class="nav-item" id="configuracionBtn"><i class="fas fa-cog"></i><span>Configuración</span></a>
+        <a href="index.html" class="nav-item" id="logoutBtn"><i class="fas fa-sign-out-alt"></i><span>Cerrar Sesión</span></a>
     </nav>
-  </div>
+</div>
 
-  <div class="main-content">
+<div class="main-content">
     <div class="top-bar" style="display: flex; justify-content: space-between; align-items: center;">
-      
-      <div class="welcome-text" style="font-size: 16px;">
-        ¡Bienvenido, <span id="welcomeUser" style="color: #00d2ff; font-weight: bold;">Martín Quispe</span>!
-      </div>
-
-      <div class="user-info" style="display: flex; align-items: center; gap: 10px;">
-        <i class="fas fa-user-circle"></i>
-        <span>Jugador</span>
-      </div>
-      
+        <div class="welcome-text" style="font-size: 16px;">
+            ¡Bienvenido, <span id="welcomeUser" style="color: #00d2ff; font-weight: bold;">Martín Quispe</span>!
+        </div>
+        <div class="user-info" style="display: flex; align-items: center; gap: 10px;">
+            <i class="fas fa-user-circle"></i>
+            <span>Jugador</span>
+        </div>
     </div>
-
 
     <div class="content">
-      <h1>Cronograma de Entrenamientos</h1>
-      <p class="subtext">Días, horarios asignados y enfoque táctico de la semana.</p>
-      
-      <div class="cards">
-        <div class="card card-left">
-          <i class="fas fa-calendar-day"></i>
-          <h3>Lunes y Miércoles</h3>
-          <p><strong>Horario:</strong> 19:30 a 21:30</p>
-          <p><strong>Enfoque:</strong> Preparación física, potencia de salto y técnicas de saque.</p>
+        <div class="flex-header">
+            <h1>Cronograma y Planificación de Entrenamientos</h1>
+            <button class="btn-save" onclick="abrirModal('modalNuevaRutina')"><i class="fas fa-plus"></i> Agregar Sesión</button>
         </div>
-        
-        <div class="card card-left">
-          <i class="fas fa-volleyball-ball"></i>
-          <h3>Viernes (Táctico)</h3>
-          <p><strong>Horario:</strong> 20:00 a 22:00</p>
-          <p><strong>Enfoque:</strong> Estrategias de juego, bloqueo en red y partidos de práctica.</p>
+        <p class="subtext">Haz clic en cada jornada para abrir la planilla de ejercicios, controlar series y marcar tu progreso.</p>
+
+        <div class="cards" id="gridEntrenamientos">
+            <!-- Tarjeta Lunes y Miércoles -->
+            <div class="card card-left" onclick="abrirModal('modalLunes')">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <i class="fas fa-dumbbell"></i>
+                    <span class="badge badge-admin">Físico + Saque</span>
+                </div>
+                <h3>Lunes y Miércoles</h3>
+                <p><strong>Horario:</strong> 19:30 a 21:30 hs (120 min)</p>
+                <p><strong>Enfoque:</strong> Potencia de salto vertical, agilidad en red y precisión de saque.</p>
+                <div class="card-footer">
+                    <span><i class="fas fa-tasks"></i> Progreso actual: <strong id="resumenProgresoLunes">0%</strong> — Clic para abrir rutina</span>
+                </div>
+            </div>
+
+            <!-- Tarjeta Viernes -->
+            <div class="card card-left" onclick="abrirModal('modalViernes')">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <i class="fas fa-volleyball-ball"></i>
+                    <span class="badge badge-trainer">Táctico + Partido</span>
+                </div>
+                <h3>Viernes (Táctico)</h3>
+                <p><strong>Horario:</strong> 20:00 a 22:00 hs (120 min)</p>
+                <p><strong>Enfoque:</strong> Sistema 5-1, lectura de bloqueo doble y situaciones reales de set.</p>
+                <div class="card-footer">
+                    <span><i class="fas fa-tasks"></i> Progreso actual: <strong id="resumenProgresoViernes">0%</strong> — Clic para abrir rutina</span>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
+</div>
 
+<!-- MODAL LUNES Y MIÉRCOLES -->
+<div id="modalLunes" class="modal">
+    <div class="modal-content">
+        <span class="close-modal" onclick="cerrarModal('modalLunes')">&times;</span>
+        <h2 style="color: #00d2ff;"><i class="fas fa-dumbbell"></i> Planilla: Lunes y Miércoles</h2>
+        <p style="font-size: 13px; color: #87cefa;">Marca cada bloque a medida que lo completes en cancha.</p>
+        
+        <div style="display: flex; justify-content: space-between; font-size: 13px; margin-top: 10px;">
+            <span>Progreso de la sesión</span>
+            <span id="textoProgresoLunes" style="color: #2ed573; font-weight: bold;">0% Completado</span>
+        </div>
+        <div class="progress-container">
+            <div class="progress-bar" id="barraLunes"></div>
+        </div>
 
-  <!-- 1. Librería oficial de Supabase desde el CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    
-    <!-- 2. Archivo de configuración (ruta corregida sin 'public/') -->
-    <script src="api/config.js"></script>
-    
-    <!-- 3. Lógica del CRUD -->
-    <script src="js/api.js"></script>
-    
-    <!-- 4. Control general de la interfaz -->
-    <script src="js/main.js"></script>
+        <div id="listaEjerciciosLunes">
+            <div class="ejercicio-item">
+                <input type="checkbox" onchange="actualizarProgreso('Lunes', this)" style="margin-top: 4px;">
+                <div>
+                    <div class="ej-titulo"><strong>1. Activación y Movilidad Articular (15 min)</strong> <span class="tag-intensidad media">Media</span></div>
+                    <p style="font-size: 13px; color: #cfd8dc; margin-top: 4px;">Trote suave, desplazamientos laterales defensivos y movilidad de hombros con bandas elásticas.</p>
+                </div>
+            </div>
+            <div class="ejercicio-item">
+                <input type="checkbox" onchange="actualizarProgreso('Lunes', this)" style="margin-top: 4px;">
+                <div>
+                    <div class="ej-titulo"><strong>2. Circuito Pliométrico y Salto Vertical (35 min)</strong> <span class="tag-intensidad alta">Alta</span></div>
+                    <p style="font-size: 13px; color: #cfd8dc; margin-top: 4px;">4 series x 10 saltos al cajón + 4x8 bloqueos explosivos en red con carrera de aproximación.</p>
+                </div>
+            </div>
+            <div class="ejercicio-item">
+                <input type="checkbox" onchange="actualizarProgreso('Lunes', this)" style="margin-top: 4px;">
+                <div>
+                    <div class="ej-titulo"><strong>3. Saques Dirigidos por Zonas (40 min)</strong> <span class="tag-intensidad tecnica">Técnica</span></div>
+                    <p style="font-size: 13px; color: #cfd8dc; margin-top: 4px;">30 saques flotantes apuntando a Zona 1 y Zona 5 + 20 saques en suspensión con recepción rival.</p>
+                </div>
+            </div>
+            <div class="ejercicio-item">
+                <input type="checkbox" onchange="actualizarProgreso('Lunes', this)" style="margin-top: 4px;">
+                <div>
+                    <div class="ej-titulo"><strong>4. Defensa de Campo y Elongación (30 min)</strong> <span class="tag-intensidad media">Media</span></div>
+                    <p style="font-size: 13px; color: #cfd8dc; margin-top: 4px;">Defensa de remates cruzados en parejas y estiramiento asistido.</p>
+                </div>
+            </div>
+        </div>
 
+        <!-- Agregar ejercicio rápido a este día -->
+        <div style="margin-top: 15px; border-top: 1px solid rgba(0,210,255,0.2); padding-top: 15px; display: flex; gap: 10px;">
+            <input type="text" id="inputNuevoEjLunes" placeholder="Agregar ejercicio extra a esta rutina..." style="flex: 1; padding: 10px; border-radius: 8px; background: rgba(0,20,40,0.8); border: 1px solid #00d2ff; color: #fff;">
+            <button class="btn-save" onclick="agregarEjercicioExtra('Lunes')">+ Añadir</button>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL VIERNES -->
+<div id="modalViernes" class="modal">
+    <div class="modal-content">
+        <span class="close-modal" onclick="cerrarModal('modalViernes')">&times;</span>
+        <h2 style="color: #00d2ff;"><i class="fas fa-volleyball-ball"></i> Planilla: Viernes Táctico</h2>
+        <p style="font-size: 13px; color: #87cefa;">Enfoque en rotación, armado y juego colectivo.</p>
+        
+        <div style="display: flex; justify-content: space-between; font-size: 13px; margin-top: 10px;">
+            <span>Progreso de la sesión</span>
+            <span id="textoProgresoViernes" style="color: #2ed573; font-weight: bold;">0% Completado</span>
+        </div>
+        <div class="progress-container">
+            <div class="progress-bar" id="barraViernes"></div>
+        </div>
+
+        <div id="listaEjerciciosViernes">
+            <div class="ejercicio-item">
+                <input type="checkbox" onchange="actualizarProgreso('Viernes', this)" style="margin-top: 4px;">
+                <div>
+                    <div class="ej-titulo"><strong>1. Control de Balón y Armado Preciso (20 min)</strong> <span class="tag-intensidad tecnica">Técnica</span></div>
+                    <p style="font-size: 13px; color: #cfd8dc; margin-top: 4px;">Toque de dedos hacia posición 4 y 2 desde recepción imperfecta.</p>
+                </div>
+            </div>
+            <div class="ejercicio-item">
+                <input type="checkbox" onchange="actualizarProgreso('Viernes', this)" style="margin-top: 4px;">
+                <div>
+                    <div class="ej-titulo"><strong>2. Sincronización de Bloqueo Doble (30 min)</strong> <span class="tag-intensidad alta">Alta</span></div>
+                    <p style="font-size: 13px; color: #cfd8dc; margin-top: 4px;">Central + Punta cerrando línea frente a ataques rápidos por el centro.</p>
+                </div>
+            </div>
+            <div class="ejercicio-item">
+                <input type="checkbox" onchange="actualizarProgreso('Viernes', this)" style="margin-top: 4px;">
+                <div>
+                    <div class="ej-titulo"><strong>3. Partido Formal - Sistema 5-1 (55 min)</strong> <span class="tag-intensidad alta">Alta</span></div>
+                    <p style="font-size: 13px; color: #cfd8dc; margin-top: 4px;">3 sets a 25 puntos con rotación obligatoria y penalización por errores de saque.</p>
+                </div>
+            </div>
+        </div>
+
+        <div style="margin-top: 15px; border-top: 1px solid rgba(0,210,255,0.2); padding-top: 15px; display: flex; gap: 10px;">
+            <input type="text" id="inputNuevoEjViernes" placeholder="Agregar ejercicio extra al viernes..." style="flex: 1; padding: 10px; border-radius: 8px; background: rgba(0,20,40,0.8); border: 1px solid #00d2ff; color: #fff;">
+            <button class="btn-save" onclick="agregarEjercicioExtra('Viernes')">+ Añadir</button>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL AGREGAR NUEVA SESIÓN -->
+<div id="modalNuevaRutina" class="modal">
+    <div class="modal-content">
+        <span class="close-modal" onclick="cerrarModal('modalNuevaRutina')">&times;</span>
+        <h2 style="color: #00d2ff; margin-bottom: 15px;"><i class="fas fa-calendar-plus"></i> Nueva Sesión de Entrenamiento</h2>
+        <div class="form-group">
+            <label>Día / Título</label>
+            <input type="text" id="nuevoDiaTitulo" placeholder="Ej. Sábado (Amistoso / Físico)">
+        </div>
+        <div class="form-group">
+            <label>Horario</label>
+            <input type="text" id="nuevoDiaHorario" placeholder="Ej. 10:00 a 12:00 hs">
+        </div>
+        <div class="form-group">
+            <label>Descripción / Ejercicios principales</label>
+            <input type="text" id="nuevoDiaDesc" placeholder="Ej. Partido amistoso contra club visitante">
+        </div>
+        <button class="btn-save" style="width: 100%;" onclick="crearTarjetaEntrenamiento()">Agregar al Cronograma</button>
+    </div>
+</div>
+
+<script>
+function abrirModal(id) {
+    document.getElementById(id).style.display = 'flex';
+}
+function cerrarModal(id) {
+    document.getElementById(id).style.display = 'none';
+}
+
+function actualizarProgreso(dia, checkbox) {
+    const item = checkbox.closest('.ejercicio-item');
+    if (checkbox.checked) {
+        item.classList.add('completado');
+    } else {
+        item.classList.remove('completado');
+    }
+
+    const lista = document.getElementById('listaEjercicios' + dia);
+    const total = lista.querySelectorAll('input[type="checkbox"]').length;
+    const marcados = lista.querySelectorAll('input[type="checkbox"]:checked').length;
+    const porcentaje = Math.round((marcados / total) * 100);
+
+    document.getElementById('barra' + dia).style.width = porcentaje + '%';
+    document.getElementById('textoProgreso' + dia).innerText = porcentaje + '% Completado';
+    document.getElementById('resumenProgreso' + dia).innerText = porcentaje + '%';
+}
+
+function agregarEjercicioExtra(dia) {
+    const input = document.getElementById('inputNuevoEj' + dia);
+    const texto = input.value.trim();
+    if (!texto) return;
+
+    const lista = document.getElementById('listaEjercicios' + dia);
+    const numero = lista.querySelectorAll('.ejercicio-item').length + 1;
+
+    const nuevoHTML = `
+        <div class="ejercicio-item">
+            <input type="checkbox" onchange="actualizarProgreso('${dia}', this)" style="margin-top: 4px;">
+            <div>
+                <div class="ej-titulo"><strong>${numero}. ${texto}</strong> <span class="tag-intensidad tecnica">Extra</span></div>
+                <p style="font-size: 13px; color: #cfd8dc; margin-top: 4px;">Ejercicio añadido a la planificación del día.</p>
+            </div>
+        </div>
+    `;
+    lista.insertAdjacentHTML('beforeend', nuevoHTML);
+    input.value = '';
+    actualizarProgreso(dia, lista.lastElementChild.querySelector('input'));
+}
+
+function crearTarjetaEntrenamiento() {
+    const titulo = document.getElementById('nuevoDiaTitulo').value.trim();
+    const horario = document.getElementById('nuevoDiaHorario').value.trim();
+    const desc = document.getElementById('nuevoDiaDesc').value.trim();
+
+    if (!titulo || !horario || !desc) {
+        alert('Completa todos los campos para agregar la sesión.');
+        return;
+    }
+
+    const grid = document.getElementById('gridEntrenamientos');
+    const nuevaTarjeta = `
+        <div class="card card-left" onclick="alert('Rutina: ${titulo}\\nHorario: ${horario}\\nDetalle: ${desc}')">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <i class="fas fa-stopwatch"></i>
+                <span class="badge badge-trainer">Programado</span>
+            </div>
+            <h3>${titulo}</h3>
+            <p><strong>Horario:</strong> ${horario}</p>
+            <p><strong>Enfoque:</strong> ${desc}</p>
+            <div class="card-footer"><span><i class="fas fa-check"></i> Sesión añadida al cronograma</span></div>
+        </div>
+    `;
+    grid.insertAdjacentHTML('beforeend', nuevaTarjeta);
+
+    document.getElementById('nuevoDiaTitulo').value = '';
+    document.getElementById('nuevoDiaHorario').value = '';
+    document.getElementById('nuevoDiaDesc').value = '';
+    cerrarModal('modalNuevaRutina');
+}
+</script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="api/config.js"></script>
+<script src="js/api.js"></script>
+<script src="js/main.js"></script>
 </body>
 </html>
